@@ -1,53 +1,66 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem, ListItemText, Avatar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import logo from '../images/icon.png';
 import { Link } from 'react-router-dom';
-
+import { AuthContext } from './AuthContext';
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Example state for logged in status
+  const { user, logout } = useContext(AuthContext);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
 
-  // Example useEffect to simulate login status change
   useEffect(() => {
-    // Check if user is logged in (You can replace this with actual authentication logic)
-    const userLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    if (userLoggedIn) {
-      const storedUserName = localStorage.getItem('userName');
-      setUserName(storedUserName);
+    if (user) {
       setIsLoggedIn(true);
+      setUserName(user.username);
+    } else {
+      setIsLoggedIn(false);
+      setUserName('');
     }
-  }, []);
-
+  }, [user]);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const logout = () => {
-    // Example logout function
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('userName');
-    setIsLoggedIn(false);
-  };
+
 
   const drawer = (
     <div>
       {isLoggedIn ? (
         <>
           <List>
+          <ListItem>
+          <Avatar sx={{ bgcolor: 'secondary.main', ml: 2 }}>{userName.charAt(0)}</Avatar>
+          </ListItem>
             <ListItem button
-            
+             sx={{
+                  backgroundColor: '#f50057', // Custom background color
+                  color: 'white',
+                  fontFamily:'Times New Roman', // Custom text color
+                  '&:hover': {
+                    backgroundColor: '#d4004a', // Custom hover background color
+                  },
+                }}
              component={Link} to="/create-blog">
               <ListItemText primary="Create Blog" />
             </ListItem>
           </List>
           <List>
-            <ListItem button onClick={logout}>
+            <ListItem    sx={{
+                  backgroundColor: '#3f51b5', // Custom background color
+                  color: 'white', 
+                  fontFamily:'Times New Roman',// Custom text color
+                  '&:hover': {
+                    backgroundColor: '#303f9f', // Custom hover background color
+                  },
+                  mt: 0, // Add left margin to space out the buttons
+                }} button onClick={logout}>
+            
               <ListItemText primary="Logout" />
             </ListItem>
           </List>
@@ -74,7 +87,7 @@ const Header = () => {
                   '&:hover': {
                     backgroundColor: '#303f9f', // Custom hover background color
                   },
-                  mt: 0.5, // Add left margin to space out the buttons
+                  mt: 0, // Add left margin to space out the buttons
                 }}
           component={Link} to="/login">
             <ListItemText primary="Login" />
@@ -112,8 +125,12 @@ color:'black', border:'1px solid black'
           <>
             {isLoggedIn ? (
               <>
-                <Avatar sx={{ bgcolor: 'secondary.main', ml: 2 }}>{userName.charAt(0)}</Avatar>
-                <Button color="inherit" onClick={logout}>
+              <Avatar sx={{ bgcolor: 'secondary.main', ml: 2 }}>{userName.charAt(0)}</Avatar>
+           <Button color="inherit" component={Link} to="/create-blog" sx={{ backgroundColor: '#f50057', color: 'white', fontFamily: 'Times New Roman', ml: 2, '&:hover': {backgroundColor: '#d4004a' } }}>
+                 Create Blog
+                </Button>
+                
+                <Button color="inherit" onClick={logout} sx={{ backgroundColor: '#3f51b5', color: 'white', fontFamily: 'Times New Roman', ml: 2, '&:hover': { backgroundColor: '#303f9f' } }}>
                   Logout
                 </Button>
               </>

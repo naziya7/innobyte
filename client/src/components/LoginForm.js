@@ -1,22 +1,22 @@
 import React, { useState, useContext } from 'react';
 import { TextField, Button, Typography, Box } from '@mui/material';
 import { AuthContext } from './AuthContext'; // Adjust import path as needed
-
+import { useNavigate } from 'react-router-dom'; 
 const LoginForm = () => {
   const { login } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add validation logic here if needed
-    login(formData);
+    await login(formData);
+    navigate('/');
   };
 
   return (

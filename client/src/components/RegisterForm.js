@@ -1,23 +1,23 @@
 import React, { useState, useContext } from 'react';
 import { TextField, Button, Typography, Box } from '@mui/material';
 import { AuthContext } from '../components/AuthContext';
-
+import { useNavigate }  from 'react-router-dom';
 const RegisterForm = () => {
   const { register } = useContext(AuthContext);
   const [formData, setFormData] = useState({
-    name: '',
+    username: '',
     email: '',
     password: '',
   });
-
+  const navigate = useNavigate(); 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add validation logic here if needed
-    register(formData);
+    await register(formData);
+    navigate('/');
   };
 
   return (
@@ -27,11 +27,11 @@ const RegisterForm = () => {
       </Typography>
       <form onSubmit={handleSubmit}>
         <TextField
-          name="name"
-          label="Name"
+           name="username"
+          label="Username"
           fullWidth
           margin="normal"
-          value={formData.name}
+          value={formData.username}
           onChange={handleChange}
           required
         />
