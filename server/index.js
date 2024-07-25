@@ -9,6 +9,7 @@ const MONGO_URL = process.env.MONGO_URL;
 const PORT = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 const blogPosts = require("./Routes/blogPosts");
+
 mongoose
   .connect(MONGO_URL, {
     useNewUrlParser: true,
@@ -35,7 +36,8 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true })); // Use body-parser middleware
+app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(bodyParser.json());
 app.use("/", authRoute);
 app.use("/api/blog", blogPosts);
+

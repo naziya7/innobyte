@@ -21,7 +21,6 @@ const Home = () => {
         const response = await axios.get(
           "http://localhost:8081/api/blog/posts"
         );
-        // Merge the dummy posts with the fetched posts
         setPosts([...DUMMY_POSTS, ...response.data]);
       } catch (error) {
         console.error("Error fetching posts", error);
@@ -48,7 +47,7 @@ const Home = () => {
             <CardMedia
               component="img"
               height="130"
-              image={post.thumbnail}
+               image={post.thumbnail}
               alt={post.title}
             />
             <CardContent>

@@ -14,8 +14,8 @@ export const DUMMY_POSTS = [
         id: '1',
         thumbnail: Thumbnail1,
         category: 'education',
-        title: 'This is the title of the very first post on this blog',
-        desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        title: 'This is the Dummy post ',
+        desc: "this is a dummy post that if user create a post how it will look, You Cant Edit or Delete this post. After Registeration you can Create Blog",
         authorID: 3
     },
     // {
@@ -66,20 +66,5 @@ export const DUMMY_POSTS = [
     //     desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
     //     authorID: 3
     // },
-    {
-        id: '8',
-        thumbnail: Thumbnail8,
-        category: 'farming',
-        title: 'This is the title of the very first post on this blog',
-        desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-        authorID: 11
-    },
-    {
-        id: '9',
-        thumbnail: Thumbnail9,
-        category: 'farming',
-        title: 'This is the title of the very first post on this blog',
-        desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-        authorID: 11
-    }
+    
 ];

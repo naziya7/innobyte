@@ -70,6 +70,8 @@ export const AuthProvider = ({ children }) => {
       setUser({ username: storedUserName });
     }
   }, []);
+ 
+
   return (
     <AuthContext.Provider value={{ user, login, logout, register }}>
       {children}
