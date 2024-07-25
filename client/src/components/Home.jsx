@@ -20,7 +20,7 @@ const Home = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8081/api/blog/posts"
+          "https://innobyte-backend-gtdq.onrender.com/api/blog/posts"
         );
         setPosts([...DUMMY_POSTS, ...response.data]);
       } catch (error) {
@@ -33,7 +33,7 @@ const Home = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8081/api/blog/delete/${id}`);
+      await axios.delete(`https://innobyte-backend-gtdq.onrender.com/api/blog/delete/${id}`);
       setPosts(posts.filter((post) => post._id !== id));
     } catch (error) {
       console.error("Error deleting post", error);

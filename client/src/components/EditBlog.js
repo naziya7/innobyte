@@ -17,7 +17,7 @@ const EditBlog = () => {
     const fetchPost = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/blog/posts/${id}`
+          `https://innobyte-backend-gtdq.onrender.com/api/blog/posts/${id}`
         );
         setPost(response.data);
       } catch (error) {
@@ -39,7 +39,7 @@ const EditBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8081/api/blog/edit/${id}`, post);
+      await axios.put(`https://innobyte-backend-gtdq.onrender.com/api/blog/edit/${id}`, post);
       navigate("/");
     } catch (error) {
       console.error("Error updating post", error);

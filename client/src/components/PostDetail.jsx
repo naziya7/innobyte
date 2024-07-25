@@ -26,7 +26,7 @@ const PostDetail = () => {
     if (!foundPost) {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/blog/posts/${id}`
+          `https://innobyte-backend-gtdq.onrender.com/api/blog/posts/${id}`
         );
         foundPost = response.data;
       } catch (err) {
@@ -40,7 +40,7 @@ const PostDetail = () => {
   const fetchComments = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8081/api/comments/${id}`
+        `https://innobyte-backend-gtdq.onrender.com/api/comments/${id}`
       );
       setComments(response.data);
     } catch (err) {
@@ -58,7 +58,7 @@ const PostDetail = () => {
 
   const handleCommentDelete = async (commentId) => {
     try {
-      await axios.delete(`http://localhost:8081/api/comments/${commentId}`);
+      await axios.delete(`https://innobyte-backend-gtdq.onrender.com/api/comments/${commentId}`);
       setComments(comments.filter((comment) => comment._id !== commentId));
     } catch (err) {
       console.error("Error deleting comment", err);
