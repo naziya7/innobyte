@@ -23,7 +23,17 @@ router.post('/create', async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   });
-  
+  router.get('/posts/:id', async (req, res) => {
+    try {
+      const post = await BlogPost.findById(req.params.id);
+      if (!post) {
+        return res.status(404).json({ message: 'Post not found' });
+      }
+      res.status(200).json(post);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
   // Update a blog post
   router.put('/edit/:id', async (req, res) => {
     try {
