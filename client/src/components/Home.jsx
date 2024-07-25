@@ -7,6 +7,7 @@ import {
   Typography,
   Button,
   CardActions,
+  Box,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -43,14 +44,27 @@ const Home = () => {
     <Grid container spacing={2} padding={2}>
       {posts.map((post) => (
         <Grid item xs={12} sm={6} md={4} key={post._id || post.id}>
-          <Card>
+          <Card
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              height: '100%',
+            }}
+          >
             <CardMedia
               component="img"
-              height="130"
-               image={post.thumbnail}
+              height="140" // Adjust as needed
+              image={post.thumbnail}
               alt={post.title}
+              sx={{
+                objectFit: 'cover',
+              }}
             />
-            <CardContent>
+            <CardContent
+              sx={{
+                flex: 1, // This allows the content area to take up the remaining space
+              }}
+            >
               <Typography gutterBottom variant="h6" component="div">
                 {post.title}
               </Typography>

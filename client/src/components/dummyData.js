@@ -14,8 +14,8 @@ export const DUMMY_POSTS = [
         id: '1',
         thumbnail: Thumbnail1,
         category: 'education',
-        title: 'This is the Dummy post ',
-        desc: "this is a dummy post that if user create a post how it will look, You Cant Edit or Delete this post. After Registeration you can Create Blog",
+        title: 'Work In Blogress.. ',
+        desc: "this is a dummy post that if user create a post how it will look, You Cant Edit or Delete this post. After Registeration you can Create Blog and you can add Comment also..",
         authorID: 3
     },
     // {
