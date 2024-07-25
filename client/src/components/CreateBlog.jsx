@@ -23,7 +23,7 @@ const CreateBlog = () => {
     };
 
     try {
-      await axios.post('https://innobyte-backend-gtdq.onrender.com/api/blog/create', newPost);
+      await axios.post('http://localhost:8081/api/blog/create', newPost);
       navigate('/');
     } catch (error) {
       console.error('There was an error creating the blog post!', error);

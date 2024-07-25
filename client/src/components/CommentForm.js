@@ -11,7 +11,7 @@ const CommentForm = ({ postId, onCommentAdded }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://innobyte-backend-gtdq.onrender.com/api/comments/add", {
+      await axios.post("http://localhost:8081/api/comments/add", {
         postId,
         user: user.username,
         comment,

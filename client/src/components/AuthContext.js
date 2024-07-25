@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (formData) => {
     try {
       const response = await axios.post(
-        "https://innobyte-backend-gtdq.onrender.com/login",
+        "http://localhost:8081/login",
         formData,
         { withCredentials: true }
       );
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (formData) => {
     try {
       const response = await axios.post(
-        "https://innobyte-backend-gtdq.onrender.com/register",
+        "http://localhost:8081/register",
         formData,
         { withCredentials: true }
       );
