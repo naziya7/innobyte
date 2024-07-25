@@ -28,7 +28,7 @@ app.listen(PORT, (err) => {
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://mern-blog-client-t6s3.onrender.com/"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
