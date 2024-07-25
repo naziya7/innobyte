@@ -1,16 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import { Typography, Container, Card, CardContent, CardMedia, Box } from '@mui/material';
 import { DUMMY_POSTS } from './dummyData'; 
 
 const PostDetail = () => {
+  // const { id } = useParams();
+  // const post = DUMMY_POSTS.find(p => p.id === id);
   const { id } = useParams();
-  const post = DUMMY_POSTS.find(p => p.id === id);
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  if (!post) {
-    return <Typography variant="h6">Post not found</Typography>;
+ useEffect(() => {
+    const fetchPost = async () => {
+      // Try to find the post in dummy data first
+      let foundPost = DUMMY_POSTS.find(p => p.id === id);
+
+      // If not found in dummy data, fetch from the backend
+      if (!foundPost) {
+        try {
+          const response = await axios.get(`http://localhost:8081/api/blog/posts/${id}`);
+          foundPost = response.data;
+        } catch (err) {
+          setError('Post not found');
+        }
+      }
+
+      setPost(foundPost);
+      setLoading(false);
+    };
+
+    fetchPost();
+  }, [id]);
+
+  if (loading) {
+    return <Typography variant="h6">Loading...</Typography>;
   }
 
+  if (error) {
+    return <Typography variant="h6">{error}</Typography>;
+  }
   return (
     <Container>
       <Box 
