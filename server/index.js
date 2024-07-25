@@ -26,13 +26,19 @@ app.listen(PORT, (err) => {
   console.log(`Server is listening on port ${PORT}`);
 });
 
-app.use(
-  cors({
-    origin: ["https://mern-blog-client-t6s3.onrender.com/"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["https://mern-blog-client-t6s3.onrender.com/"],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true,
+//   })
+// );
+const corsOptions = {
+  origin:'https://mern-blog-client-t6s3.onrender.com/',
+  optionsSuccessStatus:200,
+  credentials: true,
+};
+app.use(cors(corsOptions))
 
 app.use(express.json());
 app.use(cookieParser());
