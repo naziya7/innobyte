@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { Container, TextField, Button, Typography } from '@mui/material';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Container, TextField, Button, Typography } from "@mui/material";
 
 const EditBlog = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState({
-    title: '',
-    desc: '',
-    category: '',
-    thumbnail: ''
+    title: "",
+    desc: "",
+    category: "",
+    thumbnail: "",
   });
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:8081/api/blog/posts/${id}`);
+        const response = await axios.get(
+          `http://localhost:8081/api/blog/posts/${id}`
+        );
         setPost(response.data);
       } catch (error) {
-        console.error('Error fetching post', error);
+        console.error("Error fetching post", error);
       }
     };
 
@@ -30,7 +32,7 @@ const EditBlog = () => {
     const { name, value } = e.target;
     setPost((prevPost) => ({
       ...prevPost,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -38,15 +40,17 @@ const EditBlog = () => {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:8081/api/blog/edit/${id}`, post);
-      navigate('/');
+      navigate("/");
     } catch (error) {
-      console.error('Error updating post', error);
+      console.error("Error updating post", error);
     }
   };
 
   return (
     <Container>
-      <Typography variant="h4" gutterBottom>Edit Blog Post</Typography>
+      <Typography variant="h4" gutterBottom>
+        Edit Blog Post
+      </Typography>
       <form onSubmit={handleSubmit}>
         <TextField
           label="Title"
@@ -82,7 +86,9 @@ const EditBlog = () => {
           value={post.thumbnail}
           onChange={handleChange}
         />
-        <Button variant="contained" color="primary" type="submit">Update</Button>
+        <Button variant="contained" color="primary" type="submit">
+          Update
+        </Button>
       </form>
     </Container>
   );

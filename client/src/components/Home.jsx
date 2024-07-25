@@ -53,7 +53,7 @@ const Home = () => {
           >
             <CardMedia
               component="img"
-              height="140" // Adjust as needed
+              height="140" 
               image={post.thumbnail}
               alt={post.title}
               sx={{
@@ -62,7 +62,7 @@ const Home = () => {
             />
             <CardContent
               sx={{
-                flex: 1, // This allows the content area to take up the remaining space
+                flex: 1, 
               }}
             >
               <Typography gutterBottom variant="h6" component="div">

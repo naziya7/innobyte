@@ -1,25 +1,25 @@
 // CommentForm.jsx
-import React, { useState, useContext } from 'react';
-import axios from 'axios';
-import { AuthContext } from './AuthContext';
-import { Box, TextField, Button } from '@mui/material';
+import React, { useState, useContext } from "react";
+import axios from "axios";
+import { AuthContext } from "./AuthContext";
+import { Box, TextField, Button } from "@mui/material";
 
 const CommentForm = ({ postId, onCommentAdded }) => {
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
   const { user } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8081/api/comments/add', {
+      await axios.post("http://localhost:8081/api/comments/add", {
         postId,
         user: user.username,
         comment,
       });
-      setComment('');
+      setComment("");
       onCommentAdded();
     } catch (error) {
-      console.error('Error adding comment:', error);
+      console.error("Error adding comment:", error);
     }
   };
 
@@ -32,7 +32,9 @@ const CommentForm = ({ postId, onCommentAdded }) => {
         value={comment}
         onChange={(e) => setComment(e.target.value)}
       />
-      <Button type="submit" variant="contained" color="primary">Submit</Button>
+      <Button type="submit" variant="contained" color="primary">
+        Submit
+      </Button>
     </Box>
   );
 };
