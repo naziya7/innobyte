@@ -35,7 +35,7 @@ app.use(
   })
 );
 // const corsOptions = {
-//   origin:'https://mern-blog-client-t6s3.onrender.com/',
+//   origin:'https://mern-blog-client-t6s3.onrender.com/' ,
 //   optionsSuccessStatus:200,
 //   credentials: true,
 // };
